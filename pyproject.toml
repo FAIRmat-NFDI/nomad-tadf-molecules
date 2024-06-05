@@ -25,7 +25,10 @@ maintainers = [
     { name = "Lauri Himanen", email = "lauri.himanen@physik.hu-berlin.de" },
 ]
 license = { file = "LICENSE" }
-dependencies = ["nomad-lab>=1.2.2dev578"]
+dependencies = [
+    "nomad-lab>=1.2.2dev578",
+    "rdkit",
+]
 
 [project.urls]
 Repository = "https://github.com/lauri-codes/nomad-tadf-molecules"
