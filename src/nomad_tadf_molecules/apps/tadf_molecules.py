@@ -50,6 +50,7 @@ tadf_molecules_app = App(
             'material': FilterMenu(label='Material'),
             'elements': FilterMenu(label='Elements / Formula', level=1, size='xl'),
             'custom_quantities': FilterMenu(label='Custom Quantities', size='l'),
+            'metadata': FilterMenu(label='Visibility / IDs / Schema'),
         }
     ),
     dashboard=Dashboard(

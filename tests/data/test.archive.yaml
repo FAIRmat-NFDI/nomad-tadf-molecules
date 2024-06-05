@@ -1,3 +1,6 @@
 data:
-  m_def: nomad_tadf_molecules.schema_packages.mypackage.MySchema
-  name: Markus
+  m_def: nomad_tadf_molecules.schema_packages.tadf_molecules.TADFMolecule
+  photoluminescence_quantum_yield: 0.1
+  peak_emission_wavelength: 400
+  delayed_lifetime: 3
+  singlet_triplet_energy_splitting: 2

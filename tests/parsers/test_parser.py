@@ -1,12 +1,10 @@
 import logging
 
 from nomad.datamodel import EntryArchive
-from nomad_tadf_molecules.parsers.myparser import MyParser
+from nomad_tadf_molecules.parsers.tadf_molecules import TADFMoleculesParser
 
 
 def test_parse_file():
-    parser = MyParser()
+    parser = TADFMoleculesParser()
     archive = EntryArchive()
-    parser.parse('tests/data/example.out', archive, logging.getLogger())
-
-    assert archive.results.material.elements == ['H', 'O']
+    parser.parse('tests/data/molecule30.json', archive, logging.getLogger())
