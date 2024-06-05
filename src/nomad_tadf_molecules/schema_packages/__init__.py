@@ -10,5 +10,7 @@ class TADFMoleculesSchemaPackageEntryPoint(SchemaPackageEntryPoint):
 
 tadf_molecules = TADFMoleculesSchemaPackageEntryPoint(
     name='TADF molecules',
-    description='Schema package for thermally activated delayed fluorescent (TADF) molecules.',
+    description="""
+    Schema package for thermally activated delayed fluorescent (TADF) molecules.
+    """,
 )

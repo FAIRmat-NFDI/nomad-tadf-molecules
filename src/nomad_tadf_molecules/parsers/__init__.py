@@ -10,6 +10,9 @@ class TADFMoleculesParserEntryPoint(ParserEntryPoint):
 
 tadf_molecules = TADFMoleculesParserEntryPoint(
     name='TADFMoleculesParser',
-    description='Used to parse information about thermally activated fluorescent molecules from JSON files.',
+    description="""
+    Used to parse information about thermally activated delayed fluorescent
+    (TADF) molecules from JSON files.
+    """,
     mainfile_name_re='.*molecule\d+.json',
 )

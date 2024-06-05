@@ -26,8 +26,8 @@ class TADFMolecule(Schema, PureSubstanceSection, PublicationReference):
     photoluminescence_quantum_yield = Quantity(
         type=np.float64,
         description="""
-        The photoluminescence quantum yield defined as the ratio of the number of photons
-        emitted to the number of photons absorbed.
+        The photoluminescence quantum yield defined as the ratio of the number
+        of photons emitted to the number of photons absorbed.
         """,
         a_eln=ELNAnnotation(
             component='NumberEditQuantity',
@@ -45,8 +45,8 @@ class TADFMolecule(Schema, PureSubstanceSection, PublicationReference):
         type=np.float64,
         unit='microsecond',
         description="""
-        The time interval between the absorption of photons (excitation) and the emission
-        of light (fluorescence).
+        The time interval between the absorption of photons (excitation) and the
+        emission of light (fluorescence).
         """,
         a_eln=ELNAnnotation(
             component='NumberEditQuantity',
@@ -75,9 +75,14 @@ class TADFMolecule(Schema, PureSubstanceSection, PublicationReference):
             self.molecular_formula = Chem.rdMolDescriptors.CalcMolFormula(rdkit_mol)
             self.molecular_mass = Chem.rdMolDescriptors.CalcExactMolWt(rdkit_mol)
 
-            # Embed the molecule in 3D space and optimize its structure
+            # Embed the molecule in 3D space and optimize its structure. Skip
+            # the rest if this fails.
             AllChem.EmbedMolecule(rdkit_mol)
-            AllChem.MMFFOptimizeMolecule(rdkit_mol)
+            try:
+                AllChem.MMFFOptimizeMolecule(rdkit_mol)
+            except ValueError:
+                logger.warning('could not generate representative structure')
+                return
 
             # Let's save the composition and structure into archive.results.material
             if not archive.results.material:
@@ -90,8 +95,9 @@ class TADFMolecule(Schema, PureSubstanceSection, PublicationReference):
             atomic_numbers = [atom.GetAtomicNum() for atom in rdkit_mol.GetAtoms()]
             ase_atoms = Atoms(numbers=atomic_numbers, positions=positions)
 
-            # Create a System: this is a NOMAD specific data structure for storing structural
-            # and chemical information that is suitable for both experiments and simulations.
+            # Create a System: this is a NOMAD specific data structure for
+            # storing structural and chemical information that is suitable for
+            # both experiments and simulations.
             system = System(
                 atoms=nomad_atoms_from_ase_atoms(ase_atoms),
                 label='Molecule reconstruction',
@@ -100,8 +106,9 @@ class TADFMolecule(Schema, PureSubstanceSection, PublicationReference):
                 dimensionality='0D',
             )
 
-            # archive.results.topology can used to represent relations between systems.
-            # E.g. "System A is part of System B". In our case there is only a single system.
+            # archive.results.topology can used to represent relations between
+            # systems.  E.g. "System A is part of System B". In our case there
+            # is only a single system.
             topology = {}
             add_system_info(system, topology)
             add_system(system, topology)
