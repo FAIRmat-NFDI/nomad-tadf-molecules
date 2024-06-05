@@ -2,35 +2,36 @@ import numpy as np
 from ase import Atoms
 from nomad.atomutils import Formula
 from nomad.datamodel.data import Schema
+from nomad.datamodel.metainfo.annotations import ELNAnnotation
 from nomad.datamodel.metainfo.basesections import (
     PublicationReference,
     PureSubstanceSection,
 )
 from nomad.datamodel.results import Material, System
-from nomad.datamodel.metainfo.annotations import ELNAnnotation
 from nomad.metainfo import Quantity, SchemaPackage
 from nomad.normalizing.common import nomad_atoms_from_ase_atoms
-from nomad.normalizing.topology import add_system_info, add_system
+from nomad.normalizing.topology import add_system, add_system_info
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
-
 m_package = SchemaPackage()
 
+
 class TADFMolecule(Schema, PureSubstanceSection, PublicationReference):
-    '''
+    """
     A schema describing a thermally activated delayed fluorescent molecule with
     information extracted from the literature.
-    '''
+    """
+
     photoluminescence_quantum_yield = Quantity(
         type=np.float64,
-        description='''
+        description="""
         The photoluminescence quantum yield defined as the ratio of the number of photons
         emitted to the number of photons absorbed.
-        ''',
+        """,
         a_eln=ELNAnnotation(
             component='NumberEditQuantity',
-        )
+        ),
     )
     peak_emission_wavelength = Quantity(
         type=np.float64,
@@ -38,18 +39,18 @@ class TADFMolecule(Schema, PureSubstanceSection, PublicationReference):
         description='The wavelength at which the emission intensity is at a maximum.',
         a_eln=ELNAnnotation(
             component='NumberEditQuantity',
-        )
+        ),
     )
     delayed_lifetime = Quantity(
         type=np.float64,
         unit='microsecond',
-        description='''
+        description="""
         The time interval between the absorption of photons (excitation) and the emission
         of light (fluorescence).
-        ''',
+        """,
         a_eln=ELNAnnotation(
             component='NumberEditQuantity',
-        )
+        ),
     )
     singlet_triplet_energy_splitting = Quantity(
         type=np.float64,
@@ -57,13 +58,13 @@ class TADFMolecule(Schema, PureSubstanceSection, PublicationReference):
         description='Difference in the singlet and triplet state energy levels.',
         a_eln=ELNAnnotation(
             component='NumberEditQuantity',
-        )
+        ),
     )
 
     def normalize(self, archive, logger: None) -> None:
         # Here you can trigger base class normalization
         super().normalize(archive, logger)
-        
+
         # Here we can trigger our own normalization
         if self.smile:
             # Convert InChi to RDkit molecule
