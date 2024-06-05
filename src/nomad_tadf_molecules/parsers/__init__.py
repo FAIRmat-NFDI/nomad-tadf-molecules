@@ -1,18 +1,15 @@
 from nomad.config.models.plugins import ParserEntryPoint
-from pydantic import Field
 
 
-class MyParserEntryPoint(ParserEntryPoint):
-    parameter: int = Field(0, description='Custom configuration parameter')
-
+class TADFMoleculesParserEntryPoint(ParserEntryPoint):
     def load(self):
-        from nomad_tadf_molecules.parsers.myparser import MyParser
+        from nomad_tadf_molecules.parsers.tadf_molecules import TADFMoleculesParser
 
-        return MyParser(**self.dict())
+        return TADFMoleculesParser(**self.dict())
 
 
-myparser = MyParserEntryPoint(
-    name='MyParser',
-    description='Parser defined using the new plugin mechanism.',
-    mainfile_name_re='.*\.myparser',
+tadf_molecules = TADFMoleculesParserEntryPoint(
+    name='TADFMoleculesParser',
+    description='Used to parse information about thermally activated fluorescent molecules from JSON files.',
+    mainfile_name_re='.*molecule\d+.json',
 )

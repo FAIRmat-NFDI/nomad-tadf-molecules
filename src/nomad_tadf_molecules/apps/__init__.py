@@ -1,24 +1,9 @@
 from nomad.config.models.plugins import AppEntryPoint
-from nomad.config.models.ui import App, Column, Columns, FilterMenu, FilterMenus
 
+from nomad_tadf_molecules.apps.tadf_molecules import tadf_molecules_app
 
-myapp = AppEntryPoint(
-    name='MyApp',
-    description='App defined using the new plugin mechanism.',
-    app=App(
-        label='MyApp',
-        path='myapp',
-        category='simulation',
-        columns=Columns(
-            selected=['entry_id'],
-            options={
-                'entry_id': Column(),
-            },
-        ),
-        filter_menus=FilterMenus(
-            options={
-                'material': FilterMenu(label='Material'),
-            }
-        ),
-    ),
+tadf_molecules = AppEntryPoint(
+    name='TADF Molecules',
+    description='Search information about thermally activated delayed fluorescent (TADF) molecules.',
+    app=tadf_molecules_app,
 )

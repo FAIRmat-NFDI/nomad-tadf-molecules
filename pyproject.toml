@@ -74,7 +74,7 @@ select = [
     "UP",
     # isort
     "I",
-    # pylint 
+    # pylint
     "PL",
 ]
 
@@ -108,7 +108,6 @@ package-dir = { "" = "src" }
 where = ["src"]
 
 [project.entry-points.'nomad.plugin']
-myparser = "nomad_tadf_molecules.parsers:myparser"
-mypackage = "nomad_tadf_molecules.schema_packages:mypackage"
-
-myapp = "nomad_tadf_molecules.apps:myapp"
+parser = "nomad_tadf_molecules.parsers:tadf_molecules"
+package = "nomad_tadf_molecules.schema_packages:tadf_molecules"
+app = "nomad_tadf_molecules.apps:tadf_molecules"

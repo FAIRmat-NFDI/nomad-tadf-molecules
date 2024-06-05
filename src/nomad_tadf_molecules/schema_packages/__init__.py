@@ -1,17 +1,14 @@
 from nomad.config.models.plugins import SchemaPackageEntryPoint
-from pydantic import Field
 
 
-class MySchemaPackageEntryPoint(SchemaPackageEntryPoint):
-    parameter: int = Field(0, description='Custom configuration parameter')
-
+class TADFMoleculesSchemaPackageEntryPoint(SchemaPackageEntryPoint):
     def load(self):
-        from nomad_tadf_molecules.schema_packages.mypackage import m_package
- 
+        from nomad_tadf_molecules.schema_packages.tadf_molecules import m_package
+
         return m_package
 
 
-mypackage = MySchemaPackageEntryPoint(
-    name='MyPackage',
-    description='Schema package defined using the new plugin mechanism.',
+tadf_molecules = TADFMoleculesSchemaPackageEntryPoint(
+    name='TADF molecules',
+    description='Schema package for thermally activated delayed fluorescent (TADF) molecules.',
 )
