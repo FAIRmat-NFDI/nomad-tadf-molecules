@@ -2,7 +2,6 @@
 import logging
 
 from nomad.datamodel import EntryArchive
-
 from nomad_tadf_molecules.parsers.tadf_molecules import TADFMoleculesParser
 
 
