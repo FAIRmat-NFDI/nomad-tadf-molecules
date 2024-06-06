@@ -9,6 +9,7 @@ from nomad.config.models.ui import (
     Filters,
     Format,
     Layout,
+    Pagination,
     WidgetHistogram,
     WidgetPeriodicTable,
     WidgetScatterPlot,
@@ -25,6 +26,10 @@ tadf_molecules_app = App(
         include=[f'*#{schema}'],
     ),
     filters_locked={'section_defs.definition_qualified_name': schema},
+    pagination=Pagination(
+        order_by=f'data.photoluminescence_quantum_yield#{schema}',
+        order='desc',
+    ),
     columns=Columns(
         selected=[
             'results.material.chemical_formula_hill',
@@ -78,7 +83,7 @@ tadf_molecules_app = App(
                 layout={'lg': Layout(w=12, h=4, x=12, y=7)},
                 autorange=True,
                 nbins=30,
-                scale='linear',
+                scale='1/4',
                 quantity=f'data.delayed_lifetime#{schema}',
             ),
             WidgetHistogram(
