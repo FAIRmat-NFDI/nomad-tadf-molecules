@@ -81,7 +81,7 @@ tadf_molecules_app = App(
             WidgetHistogram(
                 type='histogram',
                 layout={'lg': Layout(w=12, h=4, x=12, y=7)},
-                autorange=True,
+                autorange=False,
                 nbins=30,
                 scale='1/4',
                 quantity=f'data.delayed_lifetime#{schema}',
@@ -89,7 +89,7 @@ tadf_molecules_app = App(
             WidgetHistogram(
                 type='histogram',
                 layout={'lg': Layout(w=12, h=4, x=12, y=7)},
-                autorange=True,
+                autorange=False,
                 nbins=30,
                 scale='linear',
                 quantity=f'data.singlet_triplet_energy_splitting#{schema}',
