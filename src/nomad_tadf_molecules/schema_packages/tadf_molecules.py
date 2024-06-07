@@ -66,7 +66,7 @@ class TADFMolecule(Schema, PureSubstanceSection, PublicationReference):
     def normalize(self, archive, logger: None) -> None:
         # Here you can trigger base class normalization
         super().normalize(archive, logger)
-        time.sleep(3)
+        time.sleep(6)
 
         # Here we can trigger our own normalization
         if self.smile:
