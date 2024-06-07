@@ -44,8 +44,12 @@ tadf_molecules_app = App(
             f'data.photoluminescence_quantum_yield#{schema}': Column(
                 format=Format(decimals=2, mode='standard')
             ),
-            f'data.peak_emission_wavelength#{schema}': Column(unit='nm'),
-            f'data.delayed_lifetime#{schema}': Column(unit='µs'),
+            f'data.peak_emission_wavelength#{schema}': Column(
+                format=Format(decimals=2, mode='standard'), unit='nm'
+            ),
+            f'data.delayed_lifetime#{schema}': Column(
+                format=Format(decimals=2, mode='standard'), unit='µs'
+            ),
             f'data.singlet_triplet_energy_splitting#{schema}': Column(
                 format=Format(decimals=2, mode='standard'),
                 unit='eV',
