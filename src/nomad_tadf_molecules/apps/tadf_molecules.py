@@ -37,17 +37,20 @@ tadf_molecules_app = App(
             f'data.peak_emission_wavelength#{schema}',
             f'data.delayed_lifetime#{schema}',
             f'data.singlet_triplet_energy_splitting#{schema}',
-            f'data.DOI_number#{schema}',
+            'references',
         ],
         options={
             'results.material.chemical_formula_hill': Column(),
             f'data.photoluminescence_quantum_yield#{schema}': Column(
                 format=Format(decimals=2, mode='standard')
             ),
-            f'data.peak_emission_wavelength#{schema}': Column(),
-            f'data.delayed_lifetime#{schema}': Column(),
-            f'data.singlet_triplet_energy_splitting#{schema}': Column(),
-            f'data.DOI_number#{schema}': Column(),
+            f'data.peak_emission_wavelength#{schema}': Column(unit='nm'),
+            f'data.delayed_lifetime#{schema}': Column(unit='µs'),
+            f'data.singlet_triplet_energy_splitting#{schema}': Column(
+                format=Format(decimals=2, mode='standard'),
+                unit='eV',
+            ),
+            'references': Column(),
         },
     ),
     filter_menus=FilterMenus(
@@ -84,7 +87,7 @@ tadf_molecules_app = App(
                 autorange=False,
                 nbins=30,
                 scale='1/4',
-                quantity=f'data.delayed_lifetime#{schema}',
+                x=Axis(quantity=f'data.delayed_lifetime#{schema}', unit='µs'),
             ),
             WidgetHistogram(
                 type='histogram',
@@ -92,7 +95,10 @@ tadf_molecules_app = App(
                 autorange=False,
                 nbins=30,
                 scale='linear',
-                quantity=f'data.singlet_triplet_energy_splitting#{schema}',
+                x=Axis(
+                    quantity=f'data.singlet_triplet_energy_splitting#{schema}',
+                    unit='eV',
+                ),
             ),
         ]
     ),
