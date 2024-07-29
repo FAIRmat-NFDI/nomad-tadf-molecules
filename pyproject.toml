@@ -16,7 +16,7 @@ classifiers = [
 name = "nomad-tadf-molecules"
 description = "NOMAD plugin for thermally activated delayed fluorescent molecules"
 version = "0.1.0"
-readme = "README.rst"
+readme = "README.md"
 requires-python = ">=3.9"
 authors = [
     { name = "Lauri Himanen", email = "lauri.himanen@physik.hu-berlin.de" },
