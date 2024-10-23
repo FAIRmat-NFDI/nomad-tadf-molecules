@@ -31,7 +31,7 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/lauri-codes/nomad-tadf-molecules"
+Repository = "https://github.com/FAIRmat-NFDI/nomad-tadf-molecules"
 
 [project.optional-dependencies]
 dev = ["ruff", "pytest", "structlog"]
