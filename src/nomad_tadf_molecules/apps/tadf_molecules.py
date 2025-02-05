@@ -101,10 +101,10 @@ tadf_molecules_app = App(
             ),
             WidgetScatterPlot(
                 layout={'lg': Layout(w=7, h=7, x=11, y=0)},
-                x=Axis(
+                x=dict(
                     search_quantity=f'data.peak_emission_wavelength#{schema}', unit='nm'
                 ),
-                y=Axis(search_quantity=f'data.delayed_lifetime#{schema}'),
+                y=dict(search_quantity=f'data.delayed_lifetime#{schema}'),
             ),
             WidgetTerms(
                 layout={'lg': Layout(w=6, h=7, x=18, y=0)},
@@ -123,7 +123,7 @@ tadf_molecules_app = App(
                 autorange=False,
                 nbins=30,
                 scale='linear',
-                x=Axis(
+                x=dict(
                     search_quantity=f'data.singlet_triplet_energy_splitting#{schema}',
                     unit='joule',
                 ),

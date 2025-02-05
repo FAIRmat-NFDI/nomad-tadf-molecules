@@ -114,3 +114,4 @@ where = ["src"]
 parser = "nomad_tadf_molecules.parsers:tadf_molecules"
 package = "nomad_tadf_molecules.schema_packages:tadf_molecules"
 app = "nomad_tadf_molecules.apps:tadf_molecules"
+example_upload = "nomad_tadf_molecules.example_uploads:tadf_molecules"
