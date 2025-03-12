@@ -5,7 +5,7 @@ class TADFMoleculesParserEntryPoint(ParserEntryPoint):
     def load(self):
         from nomad_tadf_molecules.parsers.tadf_molecules import TADFMoleculesParser
 
-        return TADFMoleculesParser(**self.dict())
+        return TADFMoleculesParser(**self.model_dump())
 
 
 tadf_molecules = TADFMoleculesParserEntryPoint(
