@@ -14,5 +14,5 @@ tadf_molecules = TADFMoleculesParserEntryPoint(
     Used to parse information about thermally activated delayed fluorescent
     (TADF) molecules from JSON files.
     """,
-    mainfile_name_re='.*molecule\d+.json',
+    mainfile_name_re=r'.*molecule\d+.json',
 )
