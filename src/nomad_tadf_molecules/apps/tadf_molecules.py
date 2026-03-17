@@ -11,6 +11,7 @@ from nomad.config.models.ui import (
     MenuItemTerms,
     Pagination,
     SearchQuantities,
+    WidgetBoxPlot,
     WidgetHistogram,
     WidgetPeriodicTable,
     WidgetScatterPlot,
@@ -124,6 +125,14 @@ tadf_molecules_app = App(
                 nbins=30,
                 scale='linear',
                 x=Axis(
+                    search_quantity=f'data.singlet_triplet_energy_splitting#{schema}',
+                    unit='joule',
+                ),
+            ),
+            WidgetBoxPlot(
+                layout={'lg': Layout(w=12, h=4, x=0, y=11)},
+                autorange=True,
+                y=Axis(
                     search_quantity=f'data.singlet_triplet_energy_splitting#{schema}',
                     unit='joule',
                 ),
